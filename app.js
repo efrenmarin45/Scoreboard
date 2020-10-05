@@ -1,3 +1,4 @@
+// List of Players
 const players = [
     {
         name: "D.VA",
@@ -21,6 +22,7 @@ const players = [
     },
 ]
 
+
 const Header = (props) => {
     return(
         <header>
@@ -29,6 +31,7 @@ const Header = (props) => {
         </header>
     );
 };
+
 
 const Player = (props) => {
     return(
@@ -42,6 +45,7 @@ const Player = (props) => {
         </div>
     );
 };
+
 
 const Counter = (props) => {
     return(
