@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from './Header';
 import Player from './Player';
+import AddPlayerForm from './AddPlayerForm';
 
 
 //!Functional Component
@@ -20,21 +21,50 @@ class App extends Component {
         players: [
         {
             name: "D.VA",
+            score: 0,
             id: 1
         },
         {
             name: "Zenyatta",
+            score: 0,
             id: 2
         },
         {
             name: "Soldier 76",
+            score: 0,
             id: 3
         },
         {
             name: "Sombra",
+            score: 0,
             id: 4
         }
     ]
+    };
+
+    prevPlayerId = 4;
+
+    handleScoreChange = (index, points) => {
+        this.setState( prevState => {
+            return {
+                score: prevState.players[index].score += points
+            }
+        })
+    }
+
+    handleAddPlayer = (name) => {
+        this.setState( prevState => {
+            return {
+                players: [
+                    ...prevState.players,
+                    {
+                       name: name,
+                       score: 0,
+                       id: this.prevPlayerId += 1  
+                    }
+                ]
+            }
+        })
     }
 
     handleRemovePlayer = (id) => {
@@ -50,18 +80,23 @@ class App extends Component {
             <div className='scoreboard'>
                 <Header 
                 title="Scoreboard" 
-                totalPlayers={this.state.players.length}
+                players={this.state.players}
                 />
 
                 {/* List of Players */}
-                {this.state.players.map(player =>
+                {this.state.players.map( (player, index) =>
                     <Player 
                         id={player.id}
-                        name={player.name} 
+                        name={player.name}
+                        score={player.score} 
                         key={player.id}
+                        index={index}
+                        changeScore={this.handleScoreChange}
                         removePlayer={this.handleRemovePlayer}
                     />
                 )}
+
+                <AddPlayerForm addPlayer={this.handleAddPlayer} />
             </div>
         )}
 }
