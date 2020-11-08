@@ -4,17 +4,6 @@ import Player from './Player';
 import AddPlayerForm from './AddPlayerForm';
 
 
-//!Functional Component
-// const Counter = (props) => {
-//     return(
-//         <div className='counter'>
-//             <button className='counter-action decrement'> - </button>
-//             <span className='counter-score'> {props.score} </span>
-//             <button className='counter-action increment'> + </button>
-//         </div>
-//     )
-// }
-
 class App extends Component {
     state = {
         players: [
@@ -60,8 +49,6 @@ class App extends Component {
         return null;
     }
 
-    
-
     handleAddPlayer = (name) => {
         this.setState( prevState => {
             return {
@@ -87,7 +74,7 @@ class App extends Component {
 
     render(){
 
-        const highScore = this.getHighScore();
+        const highScore = this.getHighScore;
 
         return(
             <div className='scoreboard'>
